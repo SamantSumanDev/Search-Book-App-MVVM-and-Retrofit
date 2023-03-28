@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Search Book Application</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="find_your_next">Find Your Next</string>
+    <string name="great_read">Great Read!</string>
+    <string name="we_have_a_brand_new_books_that_you_ll_love">We have a brand new books that you\'ll love</string>
+    <string name="get_started">Get Started</string>
+    <string name="good_afternoon">Good\nAfternoon,</string>
+    <string name="suman_kumar">Suman Kumar</string>
+    <string name="search_books">Search books...</string>
+    <string name="book">Books</string>
+    <string name="favourite">Favourite</string>
+    <string name="the_lucky_caller">Harry Porter Trivia</string>
+    <string name="book_no">0002</string>
+    <string name="book_auther">Winston Starr</string>
+    <string name="book_discription"><![CDATA[How well do you know your Harry Potter: Ronald Bilius Weasley, Hermione Jean Granger, Severus Tobias Snape, Rubeus Hagrid? Have you binge watched all ten seasons? Harry Potter Quizzes & Trivia is a fun Trivia for the TV series fans. Test yourself of how much do you remember and how much a fan of the Harry Potter TV series you are with this Harry Potter Trivia Game. With questions and random difficulty levels, Harry Potter Quizzes & Trivia, is the latest version of the trivia game card that brings up and test your knowledge about the most loved TV series. Take this game to prove whether or not you\'re a true fan.]]></string>
+</resources>

@@ -1,0 +1,34 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Outer circle -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@color/orange_transparent_2"/>
+            <corners android:radius="@dimen/_100sdp"/>
+        </shape>
+    </item>
+
+    <!-- Inner circle -->
+    <item
+        android:bottom="@dimen/_5sdp"
+        android:left="@dimen/_5sdp"
+        android:right="@dimen/_5sdp"
+        android:top="@dimen/_5sdp">
+        <shape android:shape="oval">
+            <solid android:color="@color/orange_transparent_1"/>
+            <corners android:radius="@dimen/_100sdp"/>
+        </shape>
+    </item>
+
+    <item
+        android:bottom="@dimen/_10sdp"
+        android:left="@dimen/_10sdp"
+        android:right="@dimen/_10sdp"
+        android:top="@dimen/_10sdp">
+        <shape android:shape="oval">
+            <solid android:color="@color/md_deep_orange_600"/>
+            <corners android:radius="@dimen/_100sdp"/>
+        </shape>
+    </item>
+
+</layer-list>
