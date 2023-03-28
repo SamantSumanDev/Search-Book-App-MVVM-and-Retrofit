@@ -18,7 +18,6 @@ import kotlinx.coroutines.launch
 class FavoriteFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: searchBookAdapter
-
     private lateinit var database: AppDatabase
 
     override fun onAttach(context: Context) {
@@ -39,23 +38,21 @@ class FavoriteFragment : Fragment() {
 
         // itemDao = AppDatabase.getInstance(requireContext())
 
-
         adapter = searchBookAdapter(requireContext(), ArrayList())
         recyclerView.adapter = adapter
 
         return view
     }
 
+
     override fun onResume() {
         super.onResume()
         GlobalScope.launch(Dispatchers.Main) {
-
             // val items = itemRepository.getAllItems()
             val items = database.itemDao().getAll()
             adapter.data.clear()
             adapter.data.addAll(items)
             adapter.notifyDataSetChanged()
         }
-
     }
 }
