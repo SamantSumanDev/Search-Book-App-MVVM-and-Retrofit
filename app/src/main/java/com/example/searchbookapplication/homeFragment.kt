@@ -17,7 +17,7 @@ import com.example.searchbookapplication.viewModel.homeViewModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class homeFragment() : Fragment() {
+class homeFragment() : Fragment(), searchBookAdapter.ClickListener {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var viewModel: homeViewModel
@@ -54,24 +54,38 @@ class homeFragment() : Fragment() {
         viewModel.books.observe(viewLifecycleOwner) { books ->
             val bookList: List<Item> = books
           adapter = searchBookAdapter(requireContext(), bookList as ArrayList<Item>)
-           // adapter.clickListener = this
-
             val recyclerView = binding.homeRecyclerView
             val layoutManager = LinearLayoutManager(activity)
 
             recyclerView.adapter = adapter
             recyclerView.layoutManager = layoutManager
+            adapter.clickListener = this
         }
     }
 
-   /* override fun onItemClick(item: Item) {
-        Toast.makeText(context, "Clicked", Toast.LENGTH_LONG).show()
+    override fun onItemClick(item: Item) {
+        var existingItem: List<Item> = emptyList()
         GlobalScope.launch {
-            database.itemDao().insert(item)
+            existingItem = database.itemDao().getAllInOne(item.id)
+            if (existingItem != null) {
+                activity?.runOnUiThread {
+                    Toast.makeText(context,"Already added in favorite list",Toast.LENGTH_SHORT).show()
+                }
 
+            } else {
+                GlobalScope.launch {
+                    database.itemDao().insert(item)
+                    activity?.runOnUiThread {
+                        Toast.makeText(context,"successfully added",Toast.LENGTH_SHORT).show()
+                    }
+
+                }
+            }
         }
 
-    }*/
+    }
+
+
 }
 
 

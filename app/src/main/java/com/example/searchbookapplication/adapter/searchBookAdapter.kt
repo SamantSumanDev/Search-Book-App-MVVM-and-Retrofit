@@ -23,10 +23,10 @@ class searchBookAdapter(
     private lateinit var database: AppDatabase
 
 
-    /*lateinit var clickListener: ClickListener
+    lateinit var clickListener: ClickListener
     interface ClickListener {
         fun onItemClick(item: Item)
-    }*/
+    }
     // lateinit var itemRepository: ItemRepository
 
 
@@ -43,9 +43,9 @@ class searchBookAdapter(
 
         val item = data[position]
 
-        /*holder.unsave.setOnClickListener {
+        holder.unsave.setOnClickListener {
             clickListener.onItemClick(item)
-        }*/
+        }
 
         if (item.volumeInfo.imageLinks != null && item.volumeInfo.imageLinks.thumbnail != null) {
             Glide.with(context)
@@ -88,10 +88,7 @@ class searchBookAdapter(
     }
 
     fun removeItem(position: Int) {
-        // Implement the logic to remove the item from your data source based on the position
-        // In this example, we assume that you have an ArrayList named itemList that holds your data
         data.removeAt(position)
-        // Notify the adapter that the data set has changed
         notifyDataSetChanged()
     }
 
@@ -109,22 +106,8 @@ class searchBookAdapter(
         val txtBookDisc: TextView = view.findViewById(R.id.txtBookDisc)
 
         init {
-            unsave.setOnClickListener {
-                val item = data[adapterPosition]
-                var existingItem: List<Item>? = null
-                GlobalScope.launch {
-                    existingItem = database.itemDao().getAllInOne(item.id)
-                }
-                if (existingItem != null) {
 
-                } else {
-                    GlobalScope.launch {
-                        database.itemDao().insert(item)
 
-                    }
-                }
-
-            }
 
 
         }
