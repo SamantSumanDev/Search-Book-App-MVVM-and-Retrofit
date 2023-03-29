@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.searchbookapplication.AppDatabase
 import com.example.searchbookapplication.R
-import com.example.searchbookapplication.homeFragment
 import com.example.searchbookapplication.model.Item
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 class searchBookAdapter(
     val context: Context,
     val data: ArrayList<Item>
-): RecyclerView.Adapter<searchBookAdapter.Inners>() {
+) : RecyclerView.Adapter<searchBookAdapter.Inners>() {
 
     private lateinit var database: AppDatabase
 
@@ -27,11 +27,12 @@ class searchBookAdapter(
     interface ClickListener {
         fun onItemClick(item: Item)
     }*/
-   // lateinit var itemRepository: ItemRepository
+    // lateinit var itemRepository: ItemRepository
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Inners {
-        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_book, parent, false)
+        val view: View =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_book, parent, false)
 
         database = AppDatabase.getInstance(context)
 
@@ -39,6 +40,7 @@ class searchBookAdapter(
     }
 
     override fun onBindViewHolder(holder: Inners, position: Int) {
+
         val item = data[position]
 
         /*holder.unsave.setOnClickListener {
@@ -83,8 +85,14 @@ class searchBookAdapter(
             holder.txtBookDisc.text = ""
         }
 
+    }
 
-
+    fun removeItem(position: Int) {
+        // Implement the logic to remove the item from your data source based on the position
+        // In this example, we assume that you have an ArrayList named itemList that holds your data
+        data.removeAt(position)
+        // Notify the adapter that the data set has changed
+        notifyDataSetChanged()
     }
 
     override fun getItemCount(): Int {
@@ -93,7 +101,6 @@ class searchBookAdapter(
 
     inner class Inners(view: View) : RecyclerView.ViewHolder(view) {
         val imgBookCover: ImageView = view.findViewById(R.id.imgBookCover)
-        val save: ImageView = view.findViewById(R.id.save)
         val unsave: ImageView = view.findViewById(R.id.unsave)
         val txtBookNo: TextView = view.findViewById(R.id.txtBookNo)
         val txtBookPageCount: TextView = view.findViewById(R.id.txtBookPageCount)
@@ -104,22 +111,22 @@ class searchBookAdapter(
         init {
             unsave.setOnClickListener {
                 val item = data[adapterPosition]
+                var existingItem: List<Item>? = null
                 GlobalScope.launch {
-                    database.itemDao().insert(item)
+                    existingItem = database.itemDao().getAllInOne(item.id)
                 }
-                unsave.visibility = View.GONE
-                save.visibility = View.VISIBLE
+                if (existingItem != null) {
+
+                } else {
+                    GlobalScope.launch {
+                        database.itemDao().insert(item)
+
+                    }
+                }
+
             }
 
-            save.setOnClickListener {
-                val item = data[adapterPosition]
-                GlobalScope.launch {
-                    database.itemDao().delete(item)
 
-                }
-                save.visibility = View.GONE
-                unsave.visibility = View.VISIBLE
-            }
         }
     }
 }

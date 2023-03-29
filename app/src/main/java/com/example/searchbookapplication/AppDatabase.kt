@@ -1,7 +1,6 @@
 package com.example.searchbookapplication
 
 import android.content.Context
-import android.database.Cursor
 import androidx.room.*
 import com.example.searchbookapplication.model.AccessInfoTypeConverter
 import com.example.searchbookapplication.model.Item
@@ -40,6 +39,9 @@ interface ItemDao {
 
     @Query("SELECT * FROM Item")
     suspend fun getAll(): List<Item>
+
+    @Query("SELECT * FROM Item WHERE id = :id")
+    suspend fun getAllInOne(id:String): List<Item>
 
 
 }

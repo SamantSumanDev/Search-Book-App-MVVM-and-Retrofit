@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.searchbookapplication.adapter.SwipeToDeleteCallback
 import com.example.searchbookapplication.adapter.searchBookAdapter
 import kotlinx.coroutines.Dispatchers
 
@@ -40,6 +42,10 @@ class FavoriteFragment : Fragment() {
 
         adapter = searchBookAdapter(requireContext(), ArrayList())
         recyclerView.adapter = adapter
+
+        val swipeToDeleteCallback = SwipeToDeleteCallback(requireContext(), adapter)
+        val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
+        itemTouchHelper.attachToRecyclerView(recyclerView)
 
         return view
     }
