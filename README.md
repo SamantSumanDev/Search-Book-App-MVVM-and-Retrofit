@@ -4,8 +4,8 @@
 This is a search book app built using the MVVM architecture pattern, Room database, and Retrofit. The project provides a Restful API implementation in Kotlin and includes a validation mechanism to ensure the correctness of the data inputted into the API. It serves as an ideal resource for developers who aim to build efficient and reliable API services.
 
 # Screenshots
-Search-Book-App-MVVM-and-Retrofit/search book app 2.png
-Search-Book-App-MVVM-and-Retrofit/search book app.png
+https://github.com/SamantSumanDev/Search-Book-App-MVVM-and-Retrofit/blob/master/search%20book%20app%202.png
+https://github.com/SamantSumanDev/Search-Book-App-MVVM-and-Retrofit/blob/master/search%20book%20app.png
 
 
 
